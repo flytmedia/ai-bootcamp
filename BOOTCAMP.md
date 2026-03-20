@@ -9,7 +9,7 @@
 |---|---|---|
 | 0 | AI Foundations | Done |
 | 1 | Environment Setup | Done |
-| 2 | Claude Code Mastery | In Progress |
+| 2 | Claude Code Mastery | In Progress (CLAUDE.md done) |
 | 3 | — | — |
 | 4 | — | — |
 | 5 | — | — |
@@ -38,6 +38,13 @@ Context (who/what/where) + Task (what to do) + Constraints (rules/format)
 3. AUTOMATE — pick the right tools
 4. HUMAN-IN-THE-LOOP — AI drafts, you approve
 5. ITERATE — 80% → 95% over time
+
+### CLAUDE.md Hierarchy
+1. `~/.claude/CLAUDE.md` — Global preferences (all projects)
+2. `~/project/CLAUDE.md` — Project-specific rules
+3. `~/project/sub/CLAUDE.md` — Sub-project overrides
+
+More specific wins. Use `@file.md` imports to keep it lean.
 
 ### Claude Code Tools
 Read, Write, Edit, Bash, Glob, Grep, Agent, WebSearch, WebFetch

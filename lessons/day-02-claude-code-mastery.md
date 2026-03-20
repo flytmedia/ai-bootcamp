@@ -1,8 +1,9 @@
-# Day 2 — Claude Code Mastery (In Progress)
+# Day 2 — Claude Code Mastery
 
 ## Lessons Covered
 1. How Claude Code Works
 2. Effective Prompting
+3. CLAUDE.md & Project Config
 
 ## Key Concepts
 
@@ -59,7 +60,37 @@
 - More specific = fewer wrong assumptions = better output
 - Clarity > length. 3 bullet points > 500-word paragraph.
 
+### CLAUDE.md — Project Configuration
+
+**What it is:** Markdown file in project root that tells Claude Code how to behave for THIS project. Loaded automatically every session. Like onboarding instructions for a new hire.
+
+**What goes in it:**
+- Project context (what, stack, goal)
+- Rules & constraints
+- Tool routing (which MCP for what)
+- Style preferences
+- Security rules
+- Don'ts
+
+**The 3-level hierarchy:**
+1. **User-level** (`~/.claude/CLAUDE.md`) — Global preferences across all projects
+2. **Project-level** (`~/project/CLAUDE.md`) — Project-specific rules
+3. **Sub-project** (`~/project/subdir/CLAUDE.md`) — Override parent rules
+
+Project-level overrides global. More specific wins.
+
+**@Imports:** Reference other files with `@docs/api-reference.md` — pulls content into context on demand. Keeps CLAUDE.md lean.
+
+**Applied to FLYT Media OS:**
+- Created `~/.claude/CLAUDE.md` with global preferences (security rules, code style, communication style)
+- Created `flytmedia-os/CLAUDE.md` with full workspace config (security, credentials, deploy rules, brand, services)
+- Created `ai-bootcamp/CLAUDE.md` with bootcamp-specific config (overrides TypeScript → vanilla JS)
+
 ## Challenges Completed
 - [x] Architecture Speed Run — identified tools, read package.json, checked permission mode
 - [x] Prompt Level-Up Ladder — built same to-do app at 4 prompt levels
 - [x] Boss Level — Level 4 with no-frameworks constraint, vanilla JS only
+- [x] CLAUDE.md created for bootcamp project (context, rules, don'ts, @imports)
+- [x] Boss Level — User-level CLAUDE.md at ~/.claude/CLAUDE.md with global preferences
+- [x] Override verified — global says TypeScript, bootcamp overrides to vanilla JS
+- [x] Applied to flytmedia-os workspace — full CLAUDE.md with security, credentials, deploy rules
