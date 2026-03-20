@@ -7,8 +7,8 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #0a0a0a;
-            color: #e0e0e0;
+            background: #fff;
+            color: #222;
             font-family: 'Inter', -apple-system, sans-serif;
             display: flex;
             justify-content: center;
@@ -16,42 +16,36 @@
         }
         .container { width: 100%; max-width: 500px; }
         h1 { font-size: 1.5rem; font-weight: 300; margin-bottom: 0.25rem; }
-        .counter { color: #555; font-size: 0.85rem; margin-bottom: 1.5rem; }
+        .counter { color: #999; font-size: 0.85rem; margin-bottom: 1.5rem; }
         .input-row { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
         input {
-            flex: 1; padding: 0.75rem 1rem; background: #141414; border: 1px solid #222;
-            border-radius: 8px; color: #fff; font-size: 1rem; outline: none;
+            flex: 1; padding: 0.75rem 1rem; background: #f7f7f7; border: 1px solid #e0e0e0;
+            border-radius: 8px; color: #222; font-size: 1rem; outline: none;
         }
-        input:focus { border-color: #444; }
+        input:focus { border-color: #999; }
         button {
-            padding: 0.75rem 1.5rem; background: #fff; color: #000; border: none;
-            border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.9rem;
+            padding: 0.75rem 1.5rem; background: #000; color: #fff; border: none;
+            border-radius: 8px; font-weight: 600; cursor: pointer;
         }
-        button:hover { background: #e0e0e0; }
+        button:hover { background: #333; }
         ul { list-style: none; }
         li {
             display: flex; align-items: center; gap: 0.75rem;
-            padding: 0.85rem 0.5rem; border-bottom: 1px solid #1a1a1a;
-            transition: background 0.15s;
+            padding: 0.85rem 0.25rem; border-bottom: 1px solid #f0f0f0;
         }
-        li:hover { background: #141414; border-radius: 8px; }
         .checkbox {
-            width: 20px; height: 20px; border: 2px solid #333; border-radius: 50%;
+            width: 20px; height: 20px; border: 2px solid #ddd; border-radius: 50%;
             cursor: pointer; flex-shrink: 0; display: flex; align-items: center;
             justify-content: center; transition: all 0.15s;
         }
-        .checkbox:hover { border-color: #666; }
-        .checkbox.checked { background: #fff; border-color: #fff; }
-        .checkbox.checked::after { content: '✓'; color: #000; font-size: 0.7rem; font-weight: 700; }
-        .task-text { flex: 1; font-size: 1rem; transition: all 0.15s; }
-        .task-text.done { text-decoration: line-through; color: #444; }
-        .delete {
-            color: #333; cursor: pointer; font-size: 1.2rem; padding: 0 0.25rem;
-            opacity: 0; transition: opacity 0.15s;
-        }
-        li:hover .delete { opacity: 1; }
-        .delete:hover { color: #ff4444; }
-        .empty { color: #333; text-align: center; padding: 2rem; font-size: 0.95rem; }
+        .checkbox:hover { border-color: #999; }
+        .checkbox.checked { background: #000; border-color: #000; }
+        .checkbox.checked::after { content: '✓'; color: #fff; font-size: 0.7rem; font-weight: 700; }
+        .task-text { flex: 1; font-size: 1rem; }
+        .task-text.done { text-decoration: line-through; color: #bbb; }
+        .delete { color: #ddd; cursor: pointer; font-size: 1.2rem; }
+        .delete:hover { color: #e00; }
+        .empty { color: #ccc; text-align: center; padding: 2rem; }
     </style>
 </head>
 <body>
@@ -71,10 +65,7 @@
 
         input.addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
 
-        function save() {
-            localStorage.setItem('todos', JSON.stringify(tasks));
-            updateCounter();
-        }
+        function save() { localStorage.setItem('todos', JSON.stringify(tasks)); updateCounter(); }
 
         function updateCounter() {
             const done = tasks.filter(t => t.done).length;
@@ -84,7 +75,7 @@
         function render() {
             list.innerHTML = '';
             if (tasks.length === 0) {
-                list.innerHTML = '<li class="empty">No tasks yet. Add one above.</li>';
+                list.innerHTML = '<li class="empty">No tasks yet.</li>';
             }
             tasks.forEach((task, i) => {
                 const li = document.createElement('li');
@@ -99,26 +90,15 @@
         }
 
         function addTask() {
-            const text = input.value.trim();
-            if (!text) return;
-            tasks.push({ text, done: false });
+            if (!input.value.trim()) return;
+            tasks.push({ text: input.value.trim(), done: false });
             input.value = '';
             input.focus();
-            save();
-            render();
+            save(); render();
         }
 
-        function toggle(i) {
-            tasks[i].done = !tasks[i].done;
-            save();
-            render();
-        }
-
-        function remove(i) {
-            tasks.splice(i, 1);
-            save();
-            render();
-        }
+        function toggle(i) { tasks[i].done = !tasks[i].done; save(); render(); }
+        function remove(i) { tasks.splice(i, 1); save(); render(); }
 
         render();
     </script>

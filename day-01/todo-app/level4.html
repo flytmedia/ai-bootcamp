@@ -8,8 +8,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #0a0a0a;
-            color: #e0e0e0;
+            background: #ffffff;
+            color: #111;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
@@ -26,8 +26,8 @@
             margin-bottom: 0.25rem;
         }
 
-        h1 { font-size: 1.6rem; font-weight: 300; color: #fff; letter-spacing: -0.02em; }
-        .counter { color: #444; font-size: 0.8rem; }
+        h1 { font-size: 1.6rem; font-weight: 300; color: #000; letter-spacing: -0.02em; }
+        .counter { color: #999; font-size: 0.8rem; }
 
         .actions {
             display: flex;
@@ -36,11 +36,12 @@
         }
 
         .clear-btn {
-            background: none; border: none; color: #333; font-size: 0.8rem;
+            background: none; border: none; color: #bbb; font-size: 0.8rem;
             cursor: pointer; padding: 0.25rem 0; transition: color 0.2s;
+            font-family: inherit;
         }
-        .clear-btn:hover { color: #888; }
-        .clear-btn:disabled { cursor: default; color: #1a1a1a; }
+        .clear-btn:hover { color: #666; }
+        .clear-btn:disabled { cursor: default; color: #e0e0e0; }
 
         .input-row {
             display: flex;
@@ -51,22 +52,22 @@
         input[type="text"] {
             flex: 1;
             padding: 0.85rem 1rem;
-            background: #111;
-            border: 1px solid #1a1a1a;
+            background: #f8f8f8;
+            border: 1px solid #e5e5e5;
             border-radius: 10px;
-            color: #fff;
+            color: #111;
             font-size: 1rem;
             font-family: inherit;
             outline: none;
             transition: border-color 0.2s;
         }
-        input[type="text"]:focus { border-color: #333; }
-        input[type="text"]::placeholder { color: #333; }
+        input[type="text"]:focus { border-color: #aaa; }
+        input[type="text"]::placeholder { color: #bbb; }
 
         .add-btn {
             padding: 0.85rem 1.5rem;
-            background: #fff;
-            color: #000;
+            background: #000;
+            color: #fff;
             border: none;
             border-radius: 10px;
             font-weight: 600;
@@ -76,7 +77,7 @@
             transition: background 0.15s, transform 0.1s;
             min-width: 70px;
         }
-        .add-btn:hover { background: #e0e0e0; }
+        .add-btn:hover { background: #333; }
         .add-btn:active { transform: scale(0.97); }
 
         ul { list-style: none; }
@@ -86,35 +87,32 @@
             align-items: center;
             gap: 0.75rem;
             padding: 0.9rem 0.5rem;
-            border-bottom: 1px solid #111;
+            border-bottom: 1px solid #f0f0f0;
             cursor: grab;
             transition: background 0.15s, opacity 0.3s, transform 0.3s;
             user-select: none;
             -webkit-user-select: none;
+            min-height: 44px;
         }
         li:active { cursor: grabbing; }
-        li:hover { background: #111; border-radius: 10px; }
-        li.dragging { opacity: 0.4; transform: scale(0.98); }
-        li.drag-over { border-top: 2px solid #333; }
+        li:hover { background: #fafafa; border-radius: 10px; }
+        li.dragging { opacity: 0.3; transform: scale(0.98); }
+        li.drag-over { border-top: 2px solid #ccc; }
 
-        li.adding {
-            animation: slideIn 0.25s ease-out;
-        }
+        li.adding { animation: slideIn 0.25s ease-out; }
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        li.removing {
-            animation: slideOut 0.2s ease-in forwards;
-        }
+        li.removing { animation: slideOut 0.2s ease-in forwards; }
         @keyframes slideOut {
             to { opacity: 0; transform: translateX(30px); height: 0; padding: 0; overflow: hidden; }
         }
 
         .check {
             width: 22px; height: 22px;
-            border: 2px solid #2a2a2a;
+            border: 2px solid #ddd;
             border-radius: 50%;
             cursor: pointer;
             flex-shrink: 0;
@@ -123,18 +121,11 @@
             justify-content: center;
             transition: all 0.2s;
             min-width: 22px;
+            min-height: 22px;
         }
-        .check:hover { border-color: #555; }
-        .check.done {
-            background: #fff;
-            border-color: #fff;
-        }
-        .check.done::after {
-            content: '✓';
-            color: #000;
-            font-size: 0.65rem;
-            font-weight: 800;
-        }
+        .check:hover { border-color: #999; }
+        .check.done { background: #000; border-color: #000; }
+        .check.done::after { content: '✓'; color: #fff; font-size: 0.65rem; font-weight: 800; }
 
         .text {
             flex: 1;
@@ -143,28 +134,31 @@
             transition: all 0.2s;
             word-break: break-word;
         }
-        .text.done {
-            text-decoration: line-through;
-            color: #333;
-        }
+        .text.done { text-decoration: line-through; color: #bbb; }
 
         .del {
-            color: #222;
+            color: #ddd;
             cursor: pointer;
             font-size: 1.3rem;
             padding: 0.25rem 0.5rem;
             opacity: 0;
             transition: all 0.15s;
             border-radius: 6px;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         li:hover .del { opacity: 1; }
-        .del:hover { color: #ff4444; background: #1a0000; }
+        .del:hover { color: #e00; background: #fff0f0; }
 
         .empty {
-            color: #222;
+            color: #ccc;
             text-align: center;
             padding: 3rem 1rem;
             font-size: 0.9rem;
+            cursor: default;
         }
 
         @media (max-width: 480px) {
@@ -197,11 +191,16 @@
         let tasks = JSON.parse(localStorage.getItem('todos') || '[]');
         let dragIdx = null;
 
-        // Keyboard shortcuts
         input.addEventListener('keydown', e => {
             if (e.key === 'Enter') addTask();
             if (e.key === 'Escape') { input.value = ''; input.blur(); }
         });
+
+        function esc(str) {
+            const d = document.createElement('div');
+            d.textContent = str;
+            return d.innerHTML;
+        }
 
         function save() {
             localStorage.setItem('todos', JSON.stringify(tasks));
@@ -216,7 +215,7 @@
             clearBtn.disabled = done === 0;
         }
 
-        function render(animateLastAdded) {
+        function render(animateNew) {
             list.innerHTML = '';
             if (tasks.length === 0) {
                 list.innerHTML = '<li class="empty">No tasks yet.</li>';
@@ -227,7 +226,7 @@
                 const li = document.createElement('li');
                 li.draggable = true;
                 li.dataset.index = i;
-                if (animateLastAdded && i === tasks.length - 1) li.classList.add('adding');
+                if (animateNew && i === tasks.length - 1) li.classList.add('adding');
 
                 li.innerHTML = `
                     <div class="check ${task.done ? 'done' : ''}" onclick="toggle(${i})"></div>
@@ -235,50 +234,23 @@
                     <span class="del" onclick="remove(${i})">×</span>
                 `;
 
-                // Drag events
                 li.addEventListener('dragstart', () => { dragIdx = i; li.classList.add('dragging'); });
                 li.addEventListener('dragend', () => { dragIdx = null; li.classList.remove('dragging'); clearDragStyles(); });
                 li.addEventListener('dragover', e => { e.preventDefault(); li.classList.add('drag-over'); });
-                li.addEventListener('dragleave', () => { li.classList.remove('drag-over'); });
+                li.addEventListener('dragleave', () => li.classList.remove('drag-over'));
                 li.addEventListener('drop', e => {
                     e.preventDefault();
                     li.classList.remove('drag-over');
                     if (dragIdx !== null && dragIdx !== i) {
                         const moved = tasks.splice(dragIdx, 1)[0];
                         tasks.splice(i, 0, moved);
-                        save();
-                        render(false);
+                        save(); render(false);
                     }
-                });
-
-                // Touch drag support
-                let touchStartY = 0;
-                li.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; dragIdx = i; }, { passive: true });
-                li.addEventListener('touchmove', e => { e.preventDefault(); }, { passive: false });
-                li.addEventListener('touchend', e => {
-                    const touchEndY = e.changedTouches[0].clientY;
-                    const diff = Math.round((touchEndY - touchStartY) / 60);
-                    if (diff !== 0 && dragIdx !== null) {
-                        const newIdx = Math.max(0, Math.min(tasks.length - 1, dragIdx + diff));
-                        if (newIdx !== dragIdx) {
-                            const moved = tasks.splice(dragIdx, 1)[0];
-                            tasks.splice(newIdx, 0, moved);
-                            save();
-                            render(false);
-                        }
-                    }
-                    dragIdx = null;
                 });
 
                 list.appendChild(li);
             });
             updateCounter();
-        }
-
-        function esc(str) {
-            const d = document.createElement('div');
-            d.textContent = str;
-            return d.innerHTML;
         }
 
         function clearDragStyles() {
@@ -291,33 +263,20 @@
             tasks.push({ text, done: false });
             input.value = '';
             input.focus();
-            save();
-            render(true);
+            save(); render(true);
         }
 
-        function toggle(i) {
-            tasks[i].done = !tasks[i].done;
-            save();
-            render(false);
-        }
+        function toggle(i) { tasks[i].done = !tasks[i].done; save(); render(false); }
 
         function remove(i) {
             const items = list.querySelectorAll('li:not(.empty)');
             if (items[i]) {
                 items[i].classList.add('removing');
-                setTimeout(() => {
-                    tasks.splice(i, 1);
-                    save();
-                    render(false);
-                }, 200);
+                setTimeout(() => { tasks.splice(i, 1); save(); render(false); }, 200);
             }
         }
 
-        function clearCompleted() {
-            tasks = tasks.filter(t => !t.done);
-            save();
-            render(false);
-        }
+        function clearCompleted() { tasks = tasks.filter(t => !t.done); save(); render(false); }
 
         render(false);
     </script>
