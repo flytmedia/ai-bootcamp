@@ -7,9 +7,9 @@
 - Repo: github.com/flytmedia/ai-bootcamp
 
 ## Structure
-- `day-XX/` — Daily project files and builds
-- `lessons/` — Key concepts and notes per lesson
-- `BOOTCAMP.md` — Master reference document (updated each lesson)
+- `day-XX/` — Project files go in the folder matching the day they were built. Day 0 work → `day-00/`, Day 2 work → `day-02/`, etc.
+- `lessons/` — Key concepts and notes per lesson (one file per day)
+- `BOOTCAMP.md` — Master reference document (updated after each lesson)
 
 ## Rules
 1. Always use vanilla HTML/CSS/JS unless a lesson specifically requires a framework
@@ -17,6 +17,9 @@
 3. Never hardcode secrets — use .env.agents (gitignored)
 4. Push to GitHub after every completed lesson or challenge
 5. Write all community posts from Ethan's first-person perspective
+6. Project files go in the `day-XX/` folder matching the CURRENT day — not a previous day
+7. Update `lessons/` notes and `BOOTCAMP.md` after every lesson
+8. Apply lessons learned back to the flytmedia-os workspace where applicable
 
 ## Don'ts
 - Don't skip challenges — complete every task in every lesson
